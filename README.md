@@ -19,5 +19,8 @@ Ahmed Benbrahim
 
 ### The video on the landing page was too large to upload on github
 
+### This file looks unorganized, for a more organized file visit 
+###https://github.com/abenbrahim94/OnganizedFIP
+
 ### License
 This project is licensed under the MIT license.
