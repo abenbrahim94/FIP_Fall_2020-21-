@@ -21,6 +21,20 @@ $sql="INSERT into contact (contact_name,c_email,c_no,message) VALUES ('$name','$
 $result=mysqli_query($conn,$sql);
 if($result){
 $msg="successfull";
+
+$error = "";
+$secret = '6LeIZP0ZAAAAAOCMdLt4zjbPedHpgUyPsend4k9w'; // CHANGE THIS TO YOUR OWN!
+$url = "https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=".$_POST['g-recaptcha-response'];
+$verify = json_decode(file_get_contents($url));
+if (!$verify->success) { $error = "Invalid captcha"; }
+if ($error=="") {
+  $mailTo = "abenbrahim94@gmail.com"; 
+  $mailSubject = "Contact Form";
+  $mailBody = "";
+  foreach ($_POST as $k=>$v) { $mailBody .= "$k: $v\r\n"; }
+if (!@mail($mailTo, $mailSubject, $mailBody)) { $error = "Failed to send mail"; }
+}
+
 // include_once("phpmailer/class.phpmailer.php");
 // $mail=new PHPMailer;
 // $mail->Host='smtp.gmail.com';
